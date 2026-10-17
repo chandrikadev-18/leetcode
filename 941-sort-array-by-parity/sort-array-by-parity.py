@@ -1,16 +1,16 @@
 class Solution:
     def sortArrayByParity(self, nums: list[int]) -> list[int]:
-        even = 0
-        arr_even = []
-        arr_odd = []
-        while even < len(nums):
-            if nums[even] %2 == 0:
-                arr_even.append(nums[even])
-                even += 1
-            else:
-                arr_odd.append(nums[even])
-                even += 1
-        result = arr_even + arr_odd
-        return result
+        left = 0
+        right = len(nums) - 1
 
-        
+        while left < right:
+
+            while left < right and nums[left] % 2 == 0:
+                left += 1
+
+            while left < right and nums[right] % 2 == 1:
+                right -= 1
+
+            nums[left], nums[right] = nums[right], nums[left]
+
+        return nums
